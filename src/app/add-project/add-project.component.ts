@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { AppState } from './../../redux/app.reducer';
-import * as TodoActions from './../../redux/todo/todo.actions';
+import * as ProjectActions from '../../redux/projects/projects.actions';
 
 @Component({
-  selector: 'app-new-todo',
-  templateUrl: './new-todo.component.html'
+  selector: 'app-add-project',
+  templateUrl: './add-project.component.html',
+  styleUrls: ['./add-project.component.scss']
 })
-export class NewTodoComponent implements OnInit {
+export class AddProjectComponent {
 
   textField: FormControl;
 
@@ -19,13 +20,10 @@ export class NewTodoComponent implements OnInit {
     this.textField = new FormControl('', [Validators.required]);
   }
 
-  ngOnInit() {
-  }
-
   saveTodo() {
     if (this.textField.valid) {
       const text: string = this.textField.value;
-      const action = new TodoActions.AddTodoAction(text.trim());
+      const action = new ProjectActions.AddTodoAction(text.trim());
       this.store.dispatch(action);
       this.textField.setValue('', { emitEvent: false });
     }

@@ -6,9 +6,9 @@ import { StoreModule, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { rootReducer, AppState } from './../../redux/app.reducer';
-import * as TodoActions from './../../redux/todo/todo.actions';
+import * as TodoActions from '../../redux/projects/todo.actions';
 
-import { NewTodoComponent } from './new-todo.component';
+import { AddDeveloperComponent } from './new-todo.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,14 +20,14 @@ export class BlankCmp {
 }
 
 describe('NewTodoComponent', () => {
-  let component: NewTodoComponent;
-  let fixture: ComponentFixture<NewTodoComponent>;
+  let component: AddDeveloperComponent;
+  let fixture: ComponentFixture<AddDeveloperComponent>;
   let store: Store<AppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ 
-        NewTodoComponent,
+        AddDeveloperComponent,
         BlankCmp
       ],
       imports: [
@@ -47,7 +47,7 @@ describe('NewTodoComponent', () => {
     store = TestBed.get(Store);
     spyOn(store, 'dispatch').and.callThrough();
 
-    fixture = TestBed.createComponent(NewTodoComponent);
+    fixture = TestBed.createComponent(AddDeveloperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

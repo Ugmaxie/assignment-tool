@@ -6,11 +6,11 @@ import { StoreModule, Store } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { rootReducer, AppState } from './../redux/app.reducer';
-import * as TodoActions from './../redux/todo/todo.actions';
+import * as TodoActions from '../redux/projects/todo.actions';
 
-import { TodoComponent } from './todo/todo.component';
+import { ProjectComponent } from './project/todo.component';
 import { FooterComponent } from './footer/footer.component';
-import { NewTodoComponent } from './new-todo/new-todo.component';
+import { NewTodoComponent } from './add-project/new-todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { AppComponent } from './app.component';
 
@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        TodoComponent,
+        ProjectComponent,
         FooterComponent,
         TodoListComponent,
         NewTodoComponent

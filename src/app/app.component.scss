@@ -1,0 +1,109 @@
+.header {
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  color: whitesmoke;
+  background: gray;
+  padding: 15px;
+}
+
+.items-container {
+  position: relative;
+  display: flex;
+}
+
+.item_projects {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #e0e0e0;
+  padding: 20px;
+}
+
+.item_developers {
+  position: relative;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.info {
+  background: gray;
+  color: whitesmoke;
+  text-align: center;
+  font-style: italic;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.filter {
+  color: #4d4d4d;
+  font-style: italic;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.projects-count {
+  display: flex;
+  color: #a9a9a9;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.projects_menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 20px 10px;
+}
+
+.developers_menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.projects_board {
+  display: flex;
+  flex-direction: row;
+}
+
+.projects-count_total {
+  padding-right: 10px;
+  color: darkcyan;
+}
+
+.projects-count_sales {
+  padding: 0 10px;
+  color: #ff7d5b;
+}
+
+.projects-count_progress {
+  padding: 0 10px;
+  color: #4d753d;
+}
+
+.projects-count_closed {
+  padding: 0 10px;
+}
+
+
+.developers-count {
+  display: flex;
+  color: #a9a9a9;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.developers-count_all,
+.developers-count_busy,
+.developers-count_pull {
+  padding: 0 10px;
+}

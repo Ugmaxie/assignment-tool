@@ -1,4 +1,4 @@
-import * as TodoSelectors from './todo.selectors';
+import * as TodoSelectors from './projects.selectors';
 
 describe('Redux: TodoSelectors', () => {
 
@@ -6,7 +6,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return the state', () => {
       const state = {
-        todos: [],
+        projects: [],
         filter: ''
       };
       const rta = TodoSelectors.getState(state);
@@ -22,7 +22,7 @@ describe('Redux: TodoSelectors', () => {
         todos: [],
         filter: ''
       };
-      const rta = TodoSelectors.getTodos(state);
+      const rta = TodoSelectors.getProjects(state);
       expect(rta).toEqual(state.todos);
     });
 
@@ -32,7 +32,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return the all todos with fitler "SHOW_ALL"', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: false },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: false },
@@ -45,7 +45,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return the completed todos with fitler "SHOW_COMPLETED"', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: false },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: false },
@@ -58,7 +58,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return the undone todos with fitler "SHOW_ACTIVE"', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: false },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: false },
@@ -71,7 +71,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return the all todos with unknown fitler ', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: false },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: false },
@@ -88,7 +88,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return false if one todo is undone', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: false },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: false },
@@ -101,7 +101,7 @@ describe('Redux: TodoSelectors', () => {
 
     it('should return true if all todos is done', () => {
       const state = {
-        todos: [
+        projects: [
           { id: 1, text: 'todo', completed: true },
           { id: 2, text: 'todo', completed: true },
           { id: 3, text: 'todo', completed: true },

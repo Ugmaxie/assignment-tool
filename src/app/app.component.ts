@@ -1,33 +1,159 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
+import * as ProjectActions from '../redux/projects/projects.actions';
+import * as DeveloperActions from '../redux/developers/developers.actions';
+import * as FilterActions from '../redux/filter/filter.actions';
 import { AppState } from './../redux/app.reducer';
-import { Todo } from './../redux/todo/todo.model';
-import * as TodoActions from './../redux/todo/todo.actions';
+import { Project } from '../redux/projects/projects.model';
+import { Developer } from '../redux/developers/developers.model';
+import { getProjectsStateCompleted, getVisibleProjects } from '../redux/projects/projects.selectors';
+import { getDevelopersStateCompleted, getVisibleDevelopers } from '../redux/developers/developers.selectors';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
+  projects: Project[] = [];
+  developers: Developer[] = [];
+  checkFieldProjects = new FormControl();
+  checkFieldDevelopers = new FormControl();
+
+  activeProjects: number;
+  countProjectsAll = 0;
+  countProjectsSales = 0;
+  countProjectsProgress = 0;
+  countProjectsClosed = 0;
+
+  assignedDevelopers: number;
+  countDevelopers: number;
+
+  currentFilter: string;
+
   constructor(
     private store: Store<AppState>,
+    private route: ActivatedRoute
   ) {
     this.populateTodos();
     this.updateTodos();
+    this.readParams();
+    this.readStatesCompleted();
+    this.readStates();
+
+    this.readFilterState();
   }
 
   private populateTodos() {
-    const todos: Todo[] = JSON.parse(localStorage.getItem('angular-ngrx-todos') || '[]');
-    this.store.dispatch(new TodoActions.PopulateTodosAction(todos));
+    const projects: Project[] = JSON.parse(localStorage.getItem('angular-ngrx-projects') || '[]');
+    this.store.dispatch(new ProjectActions.PopulateTodosAction(projects));
+
+    const developers: Developer[] = JSON.parse(localStorage.getItem('angular-ngrx-developers') || '[]');
+    this.store.dispatch(new DeveloperActions.PopulateDevelopersAction(developers));
   }
 
   private updateTodos() {
-    this.store.select('todos')
-    .subscribe(todos => {
-      localStorage.setItem('angular-ngrx-todos', JSON.stringify(todos));
+    this.store.select('projects')
+      .subscribe(projects => {
+        localStorage.setItem('angular-ngrx-projects', JSON.stringify(projects));
+        this.activeProjects = projects.filter(t => !t.completed).length;
+        this.countProjectsAll = projects.length;
+
+        this.countProjectsProgress = this.countProjectsAll;
+        this.countProjectsClosed = this.countProjectsAll - this.countProjectsProgress - this.countProjectsSales;
+      });
+
+    this.store.select('developers')
+    .subscribe(developers => {
+      localStorage.setItem('angular-ngrx-developers', JSON.stringify(developers));
+      this.assignedDevelopers = developers.filter(t => t.completed).length;
+      this.countDevelopers = developers.length;
     });
   }
 
+  private setFilter(filter: string) {
+    switch (filter) {
+      case 'active': {
+        this.store.dispatch(new FilterActions.SetFilterAction('SHOW_ACTIVE'));
+        break;
+      }
+      case 'completed': {
+        this.store.dispatch(new FilterActions.SetFilterAction('SHOW_COMPLETED'));
+        break;
+      }
+      default: {
+        this.store.dispatch(new FilterActions.SetFilterAction('SHOW_ALL'));
+        break;
+      }
+    }
+  }
+
+  private readStates() {
+    this.store.select(getVisibleProjects)
+      .subscribe(projects => {
+        this.projects = projects;
+
+        console.log('projects:', this.projects);
+      });
+
+    this.store.select(getVisibleDevelopers)
+      .subscribe(developers => {
+        this.developers = developers;
+
+        console.log('developers:', this.developers);
+      });
+  }
+
+  private readStatesCompleted() {
+    this.store.select(getProjectsStateCompleted)
+      .subscribe(status => {
+        this.checkFieldProjects.setValue(status);
+      });
+
+    this.store.select(getDevelopersStateCompleted)
+      .subscribe(status => {
+        this.checkFieldDevelopers.setValue(status);
+      });
+  }
+
+  private readParams() {
+    this.route.params
+      .subscribe(params => {
+        this.setFilter(params.filter);
+      });
+  }
+
+
+
+
+  clearCompletedProject() {
+    const action = new ProjectActions.ClearCompletedAction();
+    this.store.dispatch(action);
+  }
+
+  clearCompletedDeveloper() {
+    const action = new DeveloperActions.ClearCompletedAction();
+    this.store.dispatch(action);
+  }
+
+  completedAllProjects() {
+    const action = new ProjectActions.CompletedAllAction();
+    this.store.dispatch(action);
+  }
+
+  completedAllDevelopers() {
+    const action = new DeveloperActions.CompletedAllAction();
+    this.store.dispatch(action);
+  }
+
+  private readFilterState() {
+    this.store.select('filter')
+      .subscribe(fitler => {
+        this.currentFilter = fitler;
+      });
+  }
 }

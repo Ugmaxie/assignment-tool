@@ -1,5 +1,5 @@
-import * as TodoActions from './todo.actions';
-import { TodosReducer } from './todo.reducer';
+import * as TodoActions from './projects.actions';
+import { TodosReducer } from './projects.reducer';
 
 describe('Redux: TodosReducer', () => {
 

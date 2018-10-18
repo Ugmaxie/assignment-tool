@@ -1,0 +1,35 @@
+<div class="project-container">
+  <div class="project_header">
+    <div class="project_status"></div>
+    <div class="project_name">
+      <div [class.completed]="project.completed" [class.editing]="editing">
+        <div class="view">
+          <input
+            class="toggle"
+            type="checkbox"
+            [formControl]="checkField"/>
+          <label
+            (dblclick)="activeEditModeProject()">
+            {{ project.text }}
+          </label>
+          <button class="destroy" (click)="deleteProject()"></button>
+        </div>
+        <input
+          class="edit hidden"
+          type="text"
+          #textInput
+          (keyup.enter)="updateText()"
+          (blur)="updateText()"
+          [formControl]="textField"
+          [hidden]="editing" />
+      </div>
+    </div>
+    <div class="project_menu"></div>
+  </div>
+  <div class="project_developers-list" *ngFor="let developer of developers">
+    {{developer}}
+  </div>
+  <div class="project_footer"></div>
+</div>
+
+

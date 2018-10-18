@@ -1,15 +1,19 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { TodosReducer } from './todo/todo.reducer';
+import { ProjectssReducer } from './projects/projects.reducer';
+import { DevelopersReducer } from './developers/developers.reducer';
 import { FilterReducer } from './filter/filter.reducer';
-import { Todo } from './todo/todo.model';
+import { Project } from './projects/projects.model';
+import { Developer } from './developers/developers.model';
 
 export interface AppState {
-  todos: Todo[];
+  projects: Project[];
+  developers: Developer[];
   filter: string;
 }
 
 export const rootReducer: ActionReducerMap<AppState> = {
-  todos: TodosReducer,
+  projects: ProjectssReducer,
+  developers: DevelopersReducer,
   filter: FilterReducer
 };

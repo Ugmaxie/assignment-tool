@@ -1,0 +1,9 @@
+<input 
+  id="new-todo" 
+  class="new-project"
+  type="text" 
+  autofocus 
+  (keyup.enter)="saveTodo()"
+  placeholder="Add project"
+  [formControl]="textField" />
+    

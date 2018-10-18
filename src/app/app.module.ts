@@ -12,24 +12,23 @@ import {
 } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { TodoComponent } from './todo/todo.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { FooterComponent } from './footer/footer.component';
-import { NewTodoComponent } from './new-todo/new-todo.component';
+import { ProjectComponent } from './project/project.component';
+import { DeveloperComponent } from './developer/developer.component';
+import { AddProjectComponent } from './add-project/add-project.component';
+import { AddDeveloperComponent } from './add-developer/add-developer.component';
 
 const routes: Routes = [
   // basic routes
-  { path: '', component: TodoListComponent, pathMatch: 'full' },
-  { path: ':filter', component: TodoListComponent }
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    TodoListComponent,
-    FooterComponent,
-    NewTodoComponent
+    ProjectComponent,
+    DeveloperComponent,
+    AddProjectComponent,
+    AddDeveloperComponent
   ],
   imports: [
     BrowserModule,

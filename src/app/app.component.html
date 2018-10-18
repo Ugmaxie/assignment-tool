@@ -1,14 +1,99 @@
 <section class="todoapp">
   <header class="header">
-    <h1>todos</h1>
-    <app-new-todo></app-new-todo>
+    Assignment Tool
   </header>
+  <div class="items-container">
+    <div class="item_projects">
+
+
+      <div class="projects_list">
+        <div class="projects_menu">
+          <div class="projects_add">
+            <app-add-project></app-add-project>
+          </div>
+          <div class="projects-count">
+            <div class="projects-count_total">Total: {{ countProjectsAll }}</div>
+            <div class="projects-count_sales">Sales: {{ countProjectsSales }}</div>
+            <div class="projects-count_progress">In Progress: {{ countProjectsProgress }}</div>
+            <div class="projects-count_closed">Closed: {{ countProjectsClosed }}</div>
+          </div>
+          <!--<div class="filters">-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_ALL'">-->
+              <!--All-->
+            <!--</a>-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/','active']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_ACTIVE'">-->
+              <!--Active-->
+            <!--</a>-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/','completed']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_COMPLETED'">-->
+              <!--Completed-->
+            <!--</a>-->
+            <!--&lt;!&ndash;<button class="clear-completed" (click)="clearCompletedProject()">Clear completed</button>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+
+        <div class="projects_board">
+          <app-project [project]="project" *ngFor="let project of projects"></app-project>
+        </div>
+      </div>
+    </div>
+    <div class="item_developers">
+      <div class="developer_add">
+        <app-add-developer></app-add-developer>
+      </div>
+
+      <div class="developers_list">
+        <div class="developers_menu">
+          <div class="developers-count">
+            <div class="developers-count_all">
+              Total: {{ countDevelopers }}
+            </div>
+            <div class="developers-count_busy">
+              Assigned: {{ assignedDevelopers }}
+            </div>
+            <div class="developers-count_pull">
+              In Pull: {{ countDevelopers - assignedDevelopers }}
+            </div>
+          </div>
+          <!--<div class="filters">-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_ALL'">-->
+              <!--All-->
+            <!--</a>-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/','active']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_ACTIVE'">-->
+              <!--Active-->
+            <!--</a>-->
+            <!--<a-->
+              <!--class="filter"-->
+              <!--[routerLink]="['/','completed']"-->
+              <!--[class.selected]="currentFilter == 'SHOW_COMPLETED'">-->
+              <!--Completed-->
+            <!--</a>-->
+            <!--&lt;!&ndash;<button id="clear-completed-developer" class="clear-completed" (click)="clearCompletedDeveloper()">Clear&ndash;&gt;-->
+            <!--&lt;!&ndash;completed&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+          <!--</div>-->
+        </div>
+
+        <app-developer [developer]="developer" *ngFor="let developer of developers"></app-developer>
+      </div>
+    </div>
+  </div>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
 </section>
 <footer class="info">
-  <p>Double-click to edit a todo</p>
-  <p>Written by <a href="http://twitter.com/nicobytes">Nicolas Molina</a></p>
-  <p>Using <a href="https://angular.io/">Angular</a> and <a href="https://ngrx.github.io/">ngrx/store</a></p>
-  <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+  <div>Valor Software 2018</div>
 </footer>

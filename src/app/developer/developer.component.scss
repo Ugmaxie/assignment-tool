@@ -1,0 +1,38 @@
+.destroy,
+.assign {
+  display: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 0;
+  background: whitesmoke;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.assign {
+  color: #4d753d;
+}
+
+.destroy:hover {
+  color: #af5b5e;
+}
+
+.assign:hover {
+  color: green;
+}
+
+.destroy:after {
+  content: '×';
+}
+
+.assign:after {
+  content: 'v';
+}
+
+.view:hover .destroy,
+.view:hover .assign {
+  display: inline-block;
+}

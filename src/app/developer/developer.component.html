@@ -1,0 +1,22 @@
+<div [class.completed]="developer.completed" [class.editing]="editing">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      [formControl]="checkField"/>
+    <label
+      (dblclick)="activeEditModeDeveloper()">
+      {{ developer.text }}
+    </label>
+    <!--<button class="assign" (click)="assignDeveloperToProject()"></button>-->
+    <button class="destroy" (click)="deleteTodoDeveloper()"></button>
+  </div>
+  <input
+    class="edit hidden"
+    type="text"
+    #textDeveloperInput
+    (keyup.enter)="updateText()"
+    (blur)="updateText()"
+    [formControl]="textField"
+    [hidden]="editing" />
+</div>
