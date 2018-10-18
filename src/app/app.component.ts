@@ -40,11 +40,9 @@ export class AppComponent {
     private route: ActivatedRoute
   ) {
     this.populateTodos();
-    this.updateTodos();
+    this.updateDataset();
     this.readParams();
     this.readStatesCompleted();
-    this.readStates();
-
     this.readFilterState();
   }
 
@@ -56,22 +54,27 @@ export class AppComponent {
     this.store.dispatch(new DeveloperActions.PopulateDevelopersAction(developers));
   }
 
-  private updateTodos() {
+  private updateDataset() {
     this.store.select('projects')
       .subscribe(projects => {
+        this.projects = projects;
         localStorage.setItem('angular-ngrx-projects', JSON.stringify(projects));
         this.activeProjects = projects.filter(t => !t.completed).length;
         this.countProjectsAll = projects.length;
-
         this.countProjectsProgress = this.countProjectsAll;
         this.countProjectsClosed = this.countProjectsAll - this.countProjectsProgress - this.countProjectsSales;
+
+        console.log('projects:', this.projects);
       });
 
     this.store.select('developers')
     .subscribe(developers => {
+      this.developers = developers;
       localStorage.setItem('angular-ngrx-developers', JSON.stringify(developers));
       this.assignedDevelopers = developers.filter(t => t.completed).length;
       this.countDevelopers = developers.length;
+
+      console.log('developers:', this.developers);
     });
   }
 
@@ -90,22 +93,6 @@ export class AppComponent {
         break;
       }
     }
-  }
-
-  private readStates() {
-    this.store.select(getVisibleProjects)
-      .subscribe(projects => {
-        this.projects = projects;
-
-        console.log('projects:', this.projects);
-      });
-
-    this.store.select(getVisibleDevelopers)
-      .subscribe(developers => {
-        this.developers = developers;
-
-        console.log('developers:', this.developers);
-      });
   }
 
   private readStatesCompleted() {

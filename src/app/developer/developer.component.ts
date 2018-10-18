@@ -70,6 +70,13 @@ export class DeveloperComponent implements OnInit {
 
   ngOnInit() {
     this.textField.setValue(this.developer.text);
+
+    this.projects.forEach(project => {
+      if (project.developers.includes(this.developer.id)) {
+        this.developer.completed = true;
+      }
+    });
+
     this.checkField.setValue(this.developer.completed, {emitEvent: false});
   }
 
