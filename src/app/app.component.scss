@@ -10,6 +10,7 @@
 .items-container {
   position: relative;
   display: flex;
+  height: 100%;
 }
 
 .item_projects {
@@ -27,16 +28,6 @@
   width: 300px;
   flex-direction: column;
   padding: 20px;
-}
-
-.info {
-  background: gray;
-  color: whitesmoke;
-  text-align: center;
-  font-style: italic;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .filter {

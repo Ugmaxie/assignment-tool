@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-publish": "gh-pages -r git@github.com:Ugmaxie/assignment-tool/ -d dist -b master",
+    "gh-publish": "gh-pages -r git@github.com:Ugmaxie/assignment-tool.git -d dist -b master",
     "cleaninstall": "rm -rf ./node_modules && npm cache verify && npm i"
   },
   "private": true,
